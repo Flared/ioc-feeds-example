@@ -8,7 +8,7 @@ from taxii2client.v21 import as_pages
 def main() -> None:
     server = Server(
         "https://api.flare.io/taxii2/",
-        user="api-key",
+        user="api-key",  # Do not change this line.
         password=os.environ["FLARE_API_KEY"],
     )
 
@@ -23,9 +23,6 @@ def main() -> None:
     # Iterate through the available collections and print new items
     for collection in api_root.collections:
         print(collection.title)
-
-        # No pagination request
-        print(collection.get_objects(added_after=start_date))
 
         # Pagination request.
         for envelope in as_pages(
